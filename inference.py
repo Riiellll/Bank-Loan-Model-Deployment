@@ -41,7 +41,7 @@ def main():
     loanPercentIncome = np.round(personIncome/loanAmount, 2)
     cbPersonCredHistLength = st.number_input(label='Insert loan duration in year:', min_value = 1, max_value=20)
     creditScore = st.number_input(label='Insert credit score:', min_value=0)
-    previousLoanDefaultsOnFile = st.pills(label='Insert education:', options=['Yes', 'No'])
+    previousLoanDefaultsOnFile = st.pills(label='Insert previous loan default status:', options=['Yes', 'No'])
     
     personGender = encodeMap[personGender]
     personEducation = encodeMap[personEducation]
