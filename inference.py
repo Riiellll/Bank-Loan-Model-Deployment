@@ -15,7 +15,7 @@ def main():
     personEmpExp = st.slider(label='Insert Person\'s Employment Experience:', min_value=0, max_value=50, step=1)
     personHomeOwnership = st.pills(label='Insert education:', options=['RENT', 'MORTGAGE', 'OWN', 'OTHER'])
     loanAmount = st.number_input(label='Insert loan amount:', min_value=1000, max_value=200000)
-    loanIntent = st.checkbox(label='Insert loan intention:', options=['DEBTCONSOLIDATION','EDUCATION','HOMEIMPROVEMENT','MEDICAL', 'VENTURE', 'PERSONAL'])
+    loanIntent = st.selectbox(label='Insert loan intention:', options=['DEBTCONSOLIDATION','EDUCATION','HOMEIMPROVEMENT','MEDICAL', 'PERSONAL', 'VENTURE'])
     loanIntRate = st.number_input(label='Insert loan interest rate:', min_value=5, max_value=25, step=0.1)
     loanPercentIncome = np.round(personIncome/loanAmount, 2)
     cbPersonCredHistLength = st.number_input(label='Insert loan duration in year:', min_value = 1, max_value=20)
