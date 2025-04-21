@@ -4,10 +4,31 @@ import numpy as np
 
 st.title('Bank Loan Approval with Machine Learning')
 model = joblib.load('RandomForest.pkl')
+encodeMap ={
+    "female": 0,
+    "male": 1,
+    "Associate": 0,
+    "Bachelor": 1,
+    "Doctorate": 2,
+    "High School": 3,
+    "Master": 4,
+    "MORTGAGE": 0,
+    "OTHER": 1,
+    "OWN": 2,
+    "RENT": 3,
+    "DEBTCONSOLIDATION": 0,
+    "EDUCATION": 1,
+    "HOMEIMPROVEMENT": 2,
+    "MEDICAL": 3,
+    "PERSONAL": 4,
+    "VENTURE": 5,
+    "No": 0,
+    "Yes": 1
+}
+
+
 
 def main():
-    st.title('Machine Learning Model Deployment')
-
     personAge = st.number_input(label='Insert age:', min_value=18, max_value=50, step=1)
     personGender = st.pills(label='Insert gender:', options=['male', 'female'])
     personEducation = st.selectbox(label='Insert education:', options=['High School', 'Associate', 'Bachelor', 'Master', 'Doctorate'])
@@ -21,6 +42,12 @@ def main():
     cbPersonCredHistLength = st.number_input(label='Insert loan duration in year:', min_value = 1, max_value=20)
     creditScore = st.number_input(label='Insert credit score:', min_value=0)
     previousLoanDefaultsOnFile = st.pills(label='Insert education:', options=['Yes', 'No'])
+    
+    personGender = encodeMap[personGender]
+    personEducation = encodeMap[personEducation]
+    personHomeOwnership = encodeMap[personHomeOwnership]
+    loanIntent = encodeMap[loanIntent]
+    previousLoanDefaultsOnFile = encodeMap[previousLoanDefaultsOnFile]
     
     if st.button('Make Prediction'):
         features = [personAge, personGender, personEducation, personIncome, personEmpExp, personHomeOwnership,
