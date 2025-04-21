@@ -39,7 +39,7 @@ def main():
     loanPercentIncome = np.round(personIncome/loanAmount, 2)
     cbPersonCredHistLength = st.number_input(label='Insert loan duration in year:', min_value = 1, max_value=20)
     creditScore = st.number_input(label='Insert credit score:', min_value=0)
-    previousLoanDefaultsOnFile = st.pills(label='Insert previous loan default status:', options=['Yes', 'No'])
+    previousLoanDefaultsOnFile = st.selectbox(label='Insert previous loan default status:', options=['Yes', 'No'])
     
     if st.button('Make Prediction'):
         personGender = encodeMap[personGender]
@@ -53,9 +53,10 @@ def main():
         result = makePrediction(features)
         if result==1:
             result = 'Approved'
+            st.success(f'Your proposal is {result}')
         else:
             result = 'Rejected'
-        st.success(f'Your proposal is {result}')
+            st.error(f'Your proposal is {result}')
 
 def makePrediction(features):
     params = np.array(features).reshape(1, -1)
