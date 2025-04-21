@@ -26,8 +26,6 @@ encodeMap ={
     "Yes": 1
 }
 
-
-
 def main():
     personAge = st.number_input(label='Insert age:', min_value=18, max_value=50, step=1)
     personGender = st.pills(label='Insert gender:', options=['male', 'female'])
@@ -43,13 +41,13 @@ def main():
     creditScore = st.number_input(label='Insert credit score:', min_value=0)
     previousLoanDefaultsOnFile = st.pills(label='Insert previous loan default status:', options=['Yes', 'No'])
     
-    personGender = encodeMap[personGender]
-    personEducation = encodeMap[personEducation]
-    personHomeOwnership = encodeMap[personHomeOwnership]
-    loanIntent = encodeMap[loanIntent]
-    previousLoanDefaultsOnFile = encodeMap[previousLoanDefaultsOnFile]
-    
     if st.button('Make Prediction'):
+        personGender = encodeMap[personGender]
+        personEducation = encodeMap[personEducation]
+        personHomeOwnership = encodeMap[personHomeOwnership]
+        loanIntent = encodeMap[loanIntent]
+        previousLoanDefaultsOnFile = encodeMap[previousLoanDefaultsOnFile]
+        
         features = [personAge, personGender, personEducation, personIncome, personEmpExp, personHomeOwnership,
                     loanAmount, loanIntent, loanIntRate, loanPercentIncome, cbPersonCredHistLength, creditScore, previousLoanDefaultsOnFile]
         result = makePrediction(features)
