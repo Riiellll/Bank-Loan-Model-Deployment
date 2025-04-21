@@ -32,7 +32,7 @@ def main():
     personEducation = st.selectbox(label='Insert education:', options=['High School', 'Associate', 'Bachelor', 'Master', 'Doctorate'])
     personIncome = st.number_input(label='Insert income($) in a year:', min_value=0)
     personEmpExp = st.slider(label='Insert Person\'s Employment Experience:', min_value=0, max_value=50, step=1)
-    personHomeOwnership = st.pills(label='Insert education:', options=['RENT', 'MORTGAGE', 'OWN', 'OTHER'])
+    personHomeOwnership = st.pills(label='Insert home ownership:', options=['RENT', 'MORTGAGE', 'OWN', 'OTHER'])
     loanAmount = st.number_input(label='Insert loan amount:', min_value=1000, max_value=200000)
     loanIntent = st.selectbox(label='Insert loan intention:', options=['DEBTCONSOLIDATION','EDUCATION','HOMEIMPROVEMENT','MEDICAL', 'PERSONAL', 'VENTURE'])
     loanIntRate = st.slider(label='Insert loan interest rate:', min_value=5.0, max_value=25.0, step=0.1)
