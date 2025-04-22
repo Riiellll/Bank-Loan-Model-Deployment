@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 st.title('Bank Loan Approval with Machine Learning')
-model = joblib.load('pickles\RandomForest.pkl')
+model = joblib.load('pickles/RandomForest.pkl')
 encodeMap ={
     "female": 0,
     "male": 1,
@@ -27,7 +27,7 @@ encodeMap ={
 }
 
 def scale(toBeScaled, filename):
-    filepath = f'pickles\{filename}'
+    filepath = f'pickles/{filename}'
     scaler = joblib.load(filepath)
     toBeScaled = scaler.transform(np.array([[toBeScaled]]))
     return toBeScaled

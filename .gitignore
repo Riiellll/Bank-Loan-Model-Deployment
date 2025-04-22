@@ -1,4 +1,7 @@
 *.pdf
 *.csv
 *.ipynb
+*txt
+*mp4
 *oop_md.py
+Final answer/
