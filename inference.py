@@ -30,7 +30,7 @@ def scale(toBeScaled, filename):
     filepath = f'pickles/{filename}'
     scaler = joblib.load(filepath)
     toBeScaled = scaler.transform(np.array([[toBeScaled]]))
-    return toBeScaled
+    return toBeScaled[0]
 
 def makePrediction(features):
     params = np.array(features).reshape(1, -1)
