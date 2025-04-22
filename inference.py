@@ -74,9 +74,11 @@ def main():
         if result==1:
             result = 'Approved'
             st.success(f'Your proposal is {result}')
-        else:
+        elif result==0:
             result = 'Rejected'
             st.error(f'Your proposal is {result}')
+        else:
+            st.error(f'Machine is not available at the moment')
 
 if __name__ == '__main__':
     main()
