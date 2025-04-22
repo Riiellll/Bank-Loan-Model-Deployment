@@ -65,7 +65,7 @@ def main():
         loanAmount = scale(loanAmount, 'loan_amntScaler.pkl')
         loanIntRate = scale(loanIntRate, 'loan_int_rateScaler.pkl')
         loanPercentIncome = scale(loanPercentIncome, 'loan_percent_incomeScaler.pkl')
-        cbPersonCreditHistLength = scale(cbPersonCreditHistLength, 'cb_credit_hist_lengthScaler.pkl')
+        cbPersonCreditHistLength = scale(cbPersonCreditHistLength, 'cb_person_cred_hist_lengthScaler.pkl')
         creditScore = scale(creditScore, 'credit_scoreScaler.pkl')
 
         features = [personAge, personGender, personEducation, personIncome, personEmpExp, personHomeOwnership,
