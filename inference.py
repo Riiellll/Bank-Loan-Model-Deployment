@@ -3,7 +3,7 @@ import joblib
 import numpy as np
 
 st.title('Bank Loan Approval with Machine Learning')
-model = joblib.load('RandomForest.pkl')
+model = joblib.load('pickles\RandomForest.pkl')
 encodeMap ={
     "female": 0,
     "male": 1,
@@ -25,6 +25,17 @@ encodeMap ={
     "No": 0,
     "Yes": 1
 }
+
+def scale(toBeScaled, filename):
+    filepath = f'pickles\{filename}'
+    scaler = joblib.load(filepath)
+    toBeScaled = scaler.transform(np.array([[toBeScaled]]))
+    return toBeScaled
+
+def makePrediction(features):
+    params = np.array(features).reshape(1, -1)
+    prediction = model.predict(params)
+    return prediction[0]
 
 def main():
     personAge = st.number_input(label='Insert age:', min_value=18, max_value=50, step=1)
@@ -48,6 +59,15 @@ def main():
         loanIntent = encodeMap[loanIntent]
         previousLoanDefaultsOnFile = encodeMap[previousLoanDefaultsOnFile]
         
+        personAge = scale(personAge, 'person_ageScaler.pkl')
+        personIncome = scale(personIncome, 'person_incomeScaler.pkl')
+        personEmpExp = scale(personEmpExp, 'person_emp_expScaler.pkl')
+        loanAmount = scale(loanAmount, 'loan_amntScaler.pkl')
+        loanIntRate = scale(loanIntRate, 'loan_int_rateScaler.pkl')
+        loanPercentIncome = scale(loanPercentIncome, 'loan_percent_incomeScaler.pkl')
+        cbPersonCreditHistLength = scale(cbPersonCreditHistLength, 'cb_credit_hist_lengthScaler.pkl')
+        creditScore = scale(creditScore, 'credit_scoreScaler.pkl')
+
         features = [personAge, personGender, personEducation, personIncome, personEmpExp, personHomeOwnership,
                     loanAmount, loanIntent, loanIntRate, loanPercentIncome, cbPersonCredHistLength, creditScore, previousLoanDefaultsOnFile]
         result = makePrediction(features)
@@ -57,11 +77,6 @@ def main():
         else:
             result = 'Rejected'
             st.error(f'Your proposal is {result}')
-
-def makePrediction(features):
-    params = np.array(features).reshape(1, -1)
-    prediction = model.predict(params)
-    return prediction[0]
 
 if __name__ == '__main__':
     main()
